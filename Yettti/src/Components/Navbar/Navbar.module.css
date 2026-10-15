@@ -452,45 +452,43 @@
 }
 
 /* ---------- Mobile ---------- */
+/* ---------- Mobile ---------- */
+/* Replace your whole existing "@media (max-width: 900px) { ... }" block with this one.
+   Layout: [ burger ] [ centered logo ] [ search ] */
 @media (max-width: 900px) {
   .header {
     --bar-height: 56px;
   }
 
+  /* Centered brand in the middle bar */
   .logo {
-    min-width: 72px;
-    font-size: 16px;
-  }
-
-  .iconBox {
-    width: 56px;
-  }
-
-  .burger {
-    display: flex;
-  }
-
-  /* Dark filler so the top row still looks like one bar */
-  .wrap::before {
-    content: "";
     order: 1;
     flex: 1 1 auto;
-    background: var(--nav-bg);
-    border-radius: var(--radius);
-  }
-
-  .logo {
-    order: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 0;
+    padding: 0 12px;
+    border: 0;
+    font-size: 18px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
   }
 
   .iconBox {
     order: 2;
+    width: 56px;
   }
 
+  /* Burger on the left (must stay below .iconBox so its order wins) */
   .burger {
-    order: 3;
+    display: flex;
+    order: 0;
   }
 
+  /* Dropdown that opens under the bar */
   .bar {
     position: absolute;
     top: calc(100% + 4px);
