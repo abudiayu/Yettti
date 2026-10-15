@@ -1,0 +1,275 @@
+/* ---------- DonationView (Gates Notes style) ---------- */
+.section {
+  --ink: #0e0f0d;
+  --grey: #8a8d92;
+  --accent: #f2a900;
+  --badge: #ff4d00;
+  --radius: 14px;
+
+  width: 100%;
+  padding: clamp(40px, 7vw, 96px) clamp(16px, 4vw, 48px);
+  background: #ffffff;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+.section * {
+  box-sizing: border-box;
+}
+
+.inner {
+  max-width: 1550px;
+  margin: 0 auto;
+}
+
+/* ---------- Intro paragraph ---------- */
+.intro {
+  margin: 0 0 clamp(40px, 6vw, 80px);
+  color: var(--grey);
+  font-size: clamp(26px, 4.1vw, 60px);
+  font-weight: 400;
+  line-height: 1.95;
+  letter-spacing: -0.015em;
+}
+
+.inlineLink {
+  color: var(--ink);
+  text-decoration: none;
+  white-space: normal;
+}
+
+.inlineLink strong {
+  font-weight: 700;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 3px;
+  padding-bottom: 2px;
+  transition: background-size 0.3s ease;
+}
+
+.inlineLink:hover strong,
+.inlineLink:focus-visible strong {
+  background-size: 100% 3px;
+}
+
+.inlineLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.thumb {
+  display: inline-block;
+  width: 2.7em;
+  height: 1.7em;
+  margin: 0 0.1em 0 0.3em;
+  vertical-align: middle;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.inlineLink:hover .thumb,
+.inlineLink:focus-visible .thumb {
+  transform: scale(1.06);
+}
+
+/* ---------- Cards ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 0.9fr);
+  gap: 4%;
+  align-items: stretch;
+}
+
+.card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  color: inherit;
+  text-decoration: none;
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.cardImage,
+.cardVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card:hover .cardImage,
+.card:focus-visible .cardImage,
+.card:hover .cardVideo,
+.card:focus-visible .cardVideo {
+  transform: scale(1.03);
+}
+
+/* Main card: big image with a frosted text panel */
+.cardMain {
+  min-height: clamp(460px, 46vw, 660px);
+  background: #2a2a28;
+}
+
+.cardMain .cardImage {
+  position: absolute;
+  inset: 0;
+}
+
+.overlay {
+  position: absolute;
+  left: clamp(14px, 2vw, 30px);
+  bottom: clamp(14px, 2vw, 30px);
+  width: min(calc(100% - 28px), 446px);
+  padding: clamp(18px, 2vw, 30px);
+  background: rgba(236, 236, 238, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 8px;
+  color: var(--ink);
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 26px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cardTitle {
+  margin: 0 0 22px;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.cardText {
+  margin: 0;
+  color: #3d3f3b;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.4;
+}
+
+/* Side card: media on top, caption panel below */
+.cardSide {
+  display: flex;
+  flex-direction: column;
+  background: #5f8590;
+}
+
+.sideMedia {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.sideMedia .cardImage,
+.sideMedia .cardVideo {
+  position: absolute;
+  inset: 0;
+}
+
+.badge {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--badge);
+  color: #fff;
+  border-radius: 6px;
+  transition: transform 0.25s ease;
+}
+
+.cardSide:hover .badge,
+.cardSide:focus-visible .badge {
+  transform: scale(1.1);
+}
+
+.sideText {
+  margin: 0;
+  padding: clamp(20px, 2vw, 30px);
+  color: #ffffff;
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.35;
+  background: linear-gradient(135deg, #5f8590 0%, #6b8a96 100%);
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 3%;
+  }
+
+  .cardMain {
+    min-height: 520px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+  .intro {
+    line-height: 1.8;
+  }
+
+  .thumb {
+    width: 2.4em;
+    height: 1.5em;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cardMain {
+    min-height: 520px;
+  }
+
+  .overlay {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+  }
+
+  .eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .sideMedia {
+    flex: none;
+    height: 260px;
+    min-height: 0;
+  }
+
+  .badge {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .section *,
+  .section *::before,
+  .section *::after {
+    transition: none !important;
+  }
+}

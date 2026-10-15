@@ -1,0 +1,152 @@
+/* ---------- Hero (Gates Notes "Meet Bill" style) ---------- */
+.hero {
+  --hero-height: clamp(460px, 78vh, 760px);
+  --paper: #ffffff;
+  --ink: #111210;
+
+  position: relative;
+  width: 100%;
+  height: var(--hero-height);
+  overflow: hidden;
+  background: var(--paper);
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+.hero * {
+  box-sizing: border-box;
+}
+
+/* The three sketches sit side by side and blend into each other */
+.collage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.panel img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+/* Soft overlap so the edges melt together like one illustration */
+.panel2,
+.panel3 {
+  margin-left: -6%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%);
+  mask-image: linear-gradient(to right, transparent 0, #000 14%);
+}
+
+.panel1 {
+  flex-grow: 1.15;
+  z-index: 1;
+}
+
+.panel2 {
+  z-index: 2;
+}
+
+.panel3 {
+  z-index: 3;
+}
+
+/* Title sits bottom-left on a soft paper fade so it stays readable on any sketch */
+.caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+  width: min(100%, 720px);
+  padding: 120px clamp(20px, 5vw, 72px) clamp(28px, 6vh, 64px);
+  background: linear-gradient(
+    to top right,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.75) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.title {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(40px, 6vw, 84px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  max-width: 34ch;
+  margin: 14px 0 0;
+  color: #3b3d39;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.4;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1000px) {
+  .hero {
+    --hero-height: clamp(440px, 70vh, 640px);
+  }
+
+  .panel2,
+  .panel3 {
+    margin-left: -8%;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+  .hero {
+    --hero-height: clamp(520px, 86svh, 700px);
+  }
+
+  /* First sketch across the top, the other two share the row below */
+  .collage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.4fr 1fr;
+  }
+
+  .panel,
+  .panel1,
+  .panel2,
+  .panel3 {
+    margin-left: 0;
+    flex: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .panel1 {
+    grid-column: 1 / -1;
+  }
+
+  /* Fade the top sketch into the two below it */
+  .panel1 {
+    -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+  }
+
+  .caption {
+    width: 100%;
+    padding-top: 140px;
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
