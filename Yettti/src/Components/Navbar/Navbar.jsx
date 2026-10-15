@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Navbar.module.css";
 import promoImg from "../../assets/Yetttimg/yettifuul.jpg";
+import promoImg2 from "../../assets/Yetttimg/yettiSkitch3.jpg"
+import promoImg3 from "../../assets/Yetttimg/yettiSkitche2.jpg"
+import promoImg4 from "../../assets/Yetttimg/demera.jpg"
 
 /*
   Edit this array to change the nav links.
@@ -8,8 +11,50 @@ import promoImg from "../../assets/Yetttimg/yettifuul.jpg";
   - A link with `menu` opens the big dropdown panel (like "Books" on Gates Notes).
 */
 const NAV_ITEMS = [
-  { label: "Home", href: "/" },
-  { label: "Family", href: "/family" },
+  {
+    label: "Home",
+    href: "/",
+    menu: {
+      title: "Explore Yetti",
+      columns: [
+        [
+          { label: "Welcome", href: "/" },
+          { label: "Latest stories", href: "/friends/stories" },
+          { label: "About Yetti", href: "/#about" },
+          { label: "Contact", href: "/#contact" },
+        ],
+      ],
+      promo: {
+        image: promoImg,
+        eyebrow: "Become an insider",
+        title: "Sign up to our newsletter",
+        href: "/signup",
+      },
+      cta: { label: "Sign up to get our newsletter", href: "/signup" },
+    },
+  },
+  {
+    label: "Family",
+    href: "/family",
+    menu: {
+      title: "Explore family",
+      columns: [
+        [
+          { label: "All family", href: "/family" },
+          { label: "Parents", href: "/family/parents" },
+          { label: "Siblings", href: "/family/siblings" },
+          { label: "Relatives", href: "/family/relatives" },
+        ],
+      ],
+      promo: {
+        image: promoImg2,
+        eyebrow: "Become an insider",
+        title: "Sign up to our newsletter",
+        href: "/signup",
+      },
+      cta: { label: "Sign up to get our newsletter", href: "/signup" },
+    },
+  },
   {
     label: "Friends",
     href: "/friends",
@@ -30,7 +75,7 @@ const NAV_ITEMS = [
         ],
       ],
       promo: {
-        image: promoImg,
+        image: promoImg3,
         eyebrow: "Become an insider",
         title: "Sign up to our newsletter",
         href: "/signup",
@@ -38,7 +83,28 @@ const NAV_ITEMS = [
       cta: { label: "Sign up to get our newsletter", href: "/signup" },
     },
   },
-  { label: "Partners", href: "/partners" },
+  {
+    label: "Partners",
+    href: "/partners",
+    menu: {
+      title: "Explore partners",
+      columns: [
+        [
+          { label: "All partners", href: "/partners" },
+          { label: "Become a partner", href: "/partners/join" },
+          { label: "Supporters", href: "/partners/supporters" },
+          { label: "Contact us", href: "/#contact" },
+        ],
+      ],
+      promo: {
+        image: promoImg4,
+        eyebrow: "Become an insider",
+        title: "Sign up to our newsletter",
+        href: "/signup",
+      },
+      cta: { label: "Sign up to get our newsletter", href: "/signup" },
+    },
+  },
 ];
 
 function Navbar() {
@@ -127,6 +193,12 @@ function Navbar() {
 
   return (
     <header className={styles.header} ref={headerRef}>
+      {/* Frosted page backdrop shown behind the open dropdown (desktop) */}
+      <div
+        className={`${styles.backdrop} ${openMenu !== null ? styles.backdropOpen : ""}`}
+        aria-hidden="true"
+      />
+
       <div className={styles.wrap}>
         {/* Logo */}
         <a href="/" className={styles.logo} onClick={closeAll} aria-label="Yetti home">
@@ -208,7 +280,23 @@ function Navbar() {
                           </div>
                           {item.menu.cta && (
                             <a href={item.menu.cta.href} className={styles.cta} onClick={closeAll}>
-                              {item.menu.cta.label}
+                              <span>{item.menu.cta.label}</span>
+                              <svg
+                                className={styles.ctaArrow}
+                                viewBox="0 0 24 24"
+                                width="18"
+                                height="18"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  d="M7 17L17 7M9 7h8v8"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="1.6"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
                             </a>
                           )}
                         </div>
@@ -219,9 +307,11 @@ function Navbar() {
                             className={styles.promo}
                             onClick={closeAll}
                           >
-                            <img src={item.menu.promo.image} alt="" />
                             <span className={styles.promoEyebrow}>{item.menu.promo.eyebrow}</span>
                             <span className={styles.promoTitle}>{item.menu.promo.title}</span>
+                            <span className={styles.promoImgWrap}>
+                              <img src={item.menu.promo.image} alt="" />
+                            </span>
                           </a>
                         )}
                       </div>
