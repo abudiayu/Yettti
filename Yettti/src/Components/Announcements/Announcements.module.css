@@ -7,8 +7,10 @@
   --ann-btn: #6f7076;
   --ann-btn-off: #cfd0d4;
   --ann-gap: 60px;
-  --ann-cols: 3.25; /* how many cards are visible (the 4th peeks in) */
+  --ann-cols: 3.25; /* cards visible at once (the 4th peeks in) */
 
+  box-sizing: border-box;
+  width: 100%;
   background: var(--ann-bg);
   color: var(--ann-text);
   padding: 56px 0 64px 126px;
@@ -16,17 +18,24 @@
   overflow: hidden;
 }
 
-.ann-heading {
+.ann *,
+.ann *::before,
+.ann *::after {
+  box-sizing: border-box;
+}
+
+.heading {
   margin: 0 0 64px;
   padding-right: 24px;
   font-size: clamp(1.5rem, 2.6vw, 2.25rem);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.01em;
+  color: var(--ann-text);
 }
 
 /* ---------- carousel track ---------- */
-.ann-track {
+.track {
   display: flex;
   column-gap: var(--ann-gap);
   margin: 0;
@@ -37,19 +46,19 @@
   scrollbar-width: none;
 }
 
-.ann-track::-webkit-scrollbar {
+.track::-webkit-scrollbar {
   display: none;
 }
 
-.ann-card {
-  flex: 0 0 calc(
-    (100% - var(--ann-gap) * (var(--ann-cols) - 1)) / var(--ann-cols)
-  );
+.card {
+  flex: 0 0 calc((100% - var(--ann-gap) * (var(--ann-cols) - 1)) / var(--ann-cols));
+  min-width: 0;
   scroll-snap-align: start;
   border-top: 1px solid var(--ann-rule);
+  list-style: none;
 }
 
-.ann-link {
+.link {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -58,36 +67,36 @@
   text-decoration: none;
 }
 
-.ann-link:focus-visible {
+.link:focus-visible {
   outline: 2px solid var(--ann-accent);
   outline-offset: 6px;
 }
 
 /* ---------- card text ---------- */
-.ann-category {
+.category {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.ann-title {
+.title {
   margin: 20px 0 0;
-  min-height: 3.6em; /* keeps images aligned when titles wrap differently */
-  font-family: "Source Serif 4", "Tiempos Headline", Georgia, "Times New Roman",
-    serif;
+  min-height: 3.6em;
+  font-family: "Source Serif 4", "Tiempos Headline", Georgia, "Times New Roman", serif;
   font-size: clamp(1.4rem, 2vw, 1.75rem);
   font-weight: 700;
   line-height: 1.2;
+  color: var(--ann-text);
   transition: color 0.15s ease;
 }
 
-.ann-link:hover .ann-title,
-.ann-link:focus-visible .ann-title {
+.link:hover .title,
+.link:focus-visible .title {
   color: var(--ann-accent);
 }
 
-.ann-desc {
+.desc {
   margin: 20px 0 0;
   max-width: 24em;
   min-height: 3.2em;
@@ -96,12 +105,13 @@
   color: var(--ann-muted);
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 /* ---------- card image ---------- */
-.ann-media {
+.media {
   margin-top: 72px;
   aspect-ratio: 16 / 9.4;
   border-radius: 6px;
@@ -109,7 +119,7 @@
   background: #c9ccf5;
 }
 
-.ann-media img {
+.media img {
   display: block;
   width: 100%;
   height: 100%;
@@ -117,7 +127,7 @@
 }
 
 /* ---------- controls ---------- */
-.ann-controls {
+.controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -125,12 +135,12 @@
   padding-right: 126px;
 }
 
-.ann-buttons {
+.buttons {
   display: flex;
   gap: 10px;
 }
 
-.ann-btn {
+.btn {
   display: grid;
   place-items: center;
   width: 50px;
@@ -143,7 +153,7 @@
   transition: background 0.15s ease;
 }
 
-.ann-btn svg {
+.btn svg {
   width: 22px;
   height: 22px;
   fill: none;
@@ -153,21 +163,21 @@
   stroke-linejoin: round;
 }
 
-.ann-btn:hover:not(:disabled) {
+.btn:hover:not(:disabled) {
   background: #4a4b52;
 }
 
-.ann-btn:focus-visible {
+.btn:focus-visible {
   outline: 2px solid var(--ann-accent);
   outline-offset: 3px;
 }
 
-.ann-btn:disabled {
+.btn:disabled {
   background: var(--ann-btn-off);
   cursor: default;
 }
 
-.ann-count {
+.count {
   min-width: 38px;
   padding: 4px 12px;
   border-radius: 999px;
@@ -184,10 +194,10 @@
     --ann-cols: 2.25;
     padding-left: 48px;
   }
-  .ann-controls {
+  .controls {
     padding-right: 48px;
   }
-  .ann-media {
+  .media {
     margin-top: 40px;
   }
 }
@@ -198,16 +208,16 @@
     --ann-cols: 1.15;
     padding: 40px 0 48px 20px;
   }
-  .ann-heading {
+  .heading {
     margin-bottom: 36px;
   }
-  .ann-controls {
+  .controls {
     padding-right: 20px;
   }
-  .ann-title {
+  .title {
     min-height: 0;
   }
-  .ann-media {
+  .media {
     margin-top: 28px;
   }
 }

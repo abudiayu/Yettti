@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import "./Announcements.module.css";
+import styles from "./Announcements.module.css";
 
 import img1 from "../../assets/Yetttimg/yetti1.jpg";
 import img2 from "../../assets/Yetttimg/yetti2jpg.jpg";
@@ -77,26 +77,26 @@ function Announcements() {
   const scrollByCard = (direction) => {
     const el = trackRef.current;
     if (!el) return;
-    const card = el.querySelector(".ann-card");
+    const card = el.firstElementChild;
     const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
     const step = card ? card.offsetWidth + gap : el.clientWidth;
     el.scrollBy({ left: direction * step, behavior: "smooth" });
   };
 
   return (
-    <section className="ann" aria-labelledby="ann-heading">
-      <h2 className="ann-heading" id="ann-heading">
+    <section className={styles.ann} aria-labelledby="ann-heading">
+      <h2 className={styles.heading} id="ann-heading">
         Our latest announcements and stories
       </h2>
 
-      <ul className="ann-track" ref={trackRef} onScroll={updateButtons}>
+      <ul className={styles.track} ref={trackRef} onScroll={updateButtons}>
         {ITEMS.map((item) => (
-          <li className="ann-card" key={item.id}>
-            <a className="ann-link" href={item.href}>
-              <span className="ann-category">{item.category}</span>
-              <h3 className="ann-title">{item.title}</h3>
-              <p className="ann-desc">{item.description}</p>
-              <div className="ann-media">
+          <li className={styles.card} key={item.id}>
+            <a className={styles.link} href={item.href}>
+              <span className={styles.category}>{item.category}</span>
+              <h3 className={styles.title}>{item.title}</h3>
+              <p className={styles.desc}>{item.description}</p>
+              <div className={styles.media}>
                 <img src={item.image} alt={item.title} loading="lazy" />
               </div>
             </a>
@@ -104,11 +104,11 @@ function Announcements() {
         ))}
       </ul>
 
-      <div className="ann-controls">
-        <div className="ann-buttons">
+      <div className={styles.controls}>
+        <div className={styles.buttons}>
           <button
             type="button"
-            className="ann-btn"
+            className={styles.btn}
             onClick={() => scrollByCard(-1)}
             disabled={!canPrev}
             aria-label="Previous announcements"
@@ -119,7 +119,7 @@ function Announcements() {
           </button>
           <button
             type="button"
-            className="ann-btn"
+            className={styles.btn}
             onClick={() => scrollByCard(1)}
             disabled={!canNext}
             aria-label="Next announcements"
@@ -129,7 +129,7 @@ function Announcements() {
             </svg>
           </button>
         </div>
-        <span className="ann-count">{ITEMS.length}</span>
+        <span className={styles.count}>{ITEMS.length}</span>
       </div>
     </section>
   );
