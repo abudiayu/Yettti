@@ -7,8 +7,11 @@
   --radius: 14px;
 
   width: 100%;
-  padding: clamp(40px, 7vw, 96px) clamp(16px, 4vw, 48px);
+  max-width: 100%;
+  margin: 0;
+  padding: clamp(32px, 7vw, 96px) clamp(16px, 4vw, 48px);
   background: #ffffff;
+  overflow-x: clip;
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
 }
 
@@ -17,18 +20,20 @@
 }
 
 .inner {
+  width: 100%;
   max-width: 1550px;
   margin: 0 auto;
 }
 
 /* ---------- Intro paragraph ---------- */
 .intro {
-  margin: 0 0 clamp(40px, 6vw, 80px);
+  margin: 0 0 clamp(32px, 6vw, 80px);
   color: var(--grey);
-  font-size: clamp(26px, 4.1vw, 60px);
+  font-size: clamp(22px, 4.1vw, 60px);
   font-weight: 400;
   line-height: 1.95;
   letter-spacing: -0.015em;
+  overflow-wrap: break-word;
 }
 
 .inlineLink {
@@ -61,6 +66,7 @@
 .thumb {
   display: inline-block;
   width: 2.7em;
+  max-width: 100%;
   height: 1.7em;
   margin: 0 0.1em 0 0.3em;
   vertical-align: middle;
@@ -80,11 +86,13 @@
   grid-template-columns: minmax(0, 1.9fr) minmax(0, 0.9fr);
   gap: 4%;
   align-items: stretch;
+  width: 100%;
 }
 
 .card {
   position: relative;
   display: block;
+  min-width: 0;
   overflow: hidden;
   border-radius: var(--radius);
   color: inherit;
@@ -100,21 +108,23 @@
 .cardVideo {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.cardImage {
   transition: transform 0.6s ease;
 }
 
 .card:hover .cardImage,
-.card:focus-visible .cardImage,
-.card:hover .cardVideo,
-.card:focus-visible .cardVideo {
+.card:focus-visible .cardImage {
   transform: scale(1.03);
 }
 
 /* Main card: big image with a frosted text panel */
 .cardMain {
-  min-height: clamp(460px, 46vw, 660px);
+  min-height: clamp(380px, 46vw, 660px);
   background: #2a2a28;
 }
 
@@ -125,10 +135,10 @@
 
 .overlay {
   position: absolute;
-  left: clamp(14px, 2vw, 30px);
-  bottom: clamp(14px, 2vw, 30px);
-  width: min(calc(100% - 28px), 446px);
-  padding: clamp(18px, 2vw, 30px);
+  left: clamp(12px, 2vw, 30px);
+  bottom: clamp(12px, 2vw, 30px);
+  width: min(calc(100% - 24px), 446px);
+  padding: clamp(16px, 2vw, 30px);
   background: rgba(236, 236, 238, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -138,7 +148,7 @@
 
 .eyebrow {
   display: block;
-  margin-bottom: 26px;
+  margin-bottom: clamp(14px, 2vw, 26px);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -146,9 +156,9 @@
 }
 
 .cardTitle {
-  margin: 0 0 22px;
+  margin: 0 0 clamp(14px, 1.6vw, 22px);
   font-family: "Georgia", "Times New Roman", serif;
-  font-size: clamp(24px, 2.4vw, 34px);
+  font-size: clamp(22px, 2.4vw, 34px);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.01em;
@@ -157,7 +167,7 @@
 .cardText {
   margin: 0;
   color: #3d3f3b;
-  font-size: clamp(15px, 1.25vw, 18px);
+  font-size: clamp(14px, 1.25vw, 18px);
   line-height: 1.4;
 }
 
@@ -171,7 +181,7 @@
 .sideMedia {
   position: relative;
   flex: 1 1 auto;
-  min-height: 300px;
+  min-height: clamp(220px, 24vw, 300px);
   overflow: hidden;
 }
 
@@ -183,8 +193,8 @@
 
 .badge {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: clamp(14px, 2vw, 30px);
+  right: clamp(14px, 2vw, 30px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,9 +213,9 @@
 
 .sideText {
   margin: 0;
-  padding: clamp(20px, 2vw, 30px);
+  padding: clamp(18px, 2vw, 30px);
   color: #ffffff;
-  font-size: clamp(16px, 1.4vw, 20px);
+  font-size: clamp(15px, 1.4vw, 20px);
   line-height: 1.35;
   background: linear-gradient(135deg, #5f8590 0%, #6b8a96 100%);
 }
@@ -218,7 +228,7 @@
   }
 
   .cardMain {
-    min-height: 520px;
+    min-height: clamp(400px, 56vw, 520px);
   }
 }
 
@@ -239,29 +249,29 @@
   }
 
   .cardMain {
-    min-height: 520px;
+    min-height: clamp(360px, 110vw, 520px);
   }
 
   .overlay {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
     width: auto;
   }
 
   .eyebrow {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .sideMedia {
     flex: none;
-    height: 260px;
+    height: clamp(200px, 62vw, 280px);
     min-height: 0;
   }
 
   .badge {
-    top: 16px;
-    right: 16px;
+    top: 14px;
+    right: 14px;
   }
 }
 

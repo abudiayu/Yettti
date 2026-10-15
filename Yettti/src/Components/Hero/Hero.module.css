@@ -1,11 +1,14 @@
 /* ---------- Hero (Gates Notes "Meet Bill" style) ---------- */
 .hero {
-  --hero-height: clamp(460px, 78vh, 760px);
+  /* Height now scales with the screen WIDTH, so the hero keeps its shape at any size */
+  --hero-height: clamp(380px, 50vw, 760px);
   --paper: #ffffff;
   --ink: #111210;
 
   position: relative;
   width: 100%;
+  max-width: 100%;
+  margin: 0;
   height: var(--hero-height);
   overflow: hidden;
   background: var(--paper);
@@ -21,6 +24,7 @@
   position: absolute;
   inset: 0;
   display: flex;
+  width: 100%;
 }
 
 .panel {
@@ -34,6 +38,7 @@
 .panel img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: 100%;
   object-fit: cover;
   user-select: none;
@@ -67,7 +72,7 @@
   bottom: 0;
   z-index: 5;
   width: min(100%, 720px);
-  padding: 120px clamp(20px, 5vw, 72px) clamp(28px, 6vh, 64px);
+  padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 72px) clamp(24px, 5vw, 64px);
   background: linear-gradient(
     to top right,
     rgba(255, 255, 255, 0.92) 0%,
@@ -80,10 +85,11 @@
 .title {
   margin: 0;
   color: var(--ink);
-  font-size: clamp(40px, 6vw, 84px);
+  font-size: clamp(36px, 6vw, 84px);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
 }
 
 .subtitle {
@@ -97,7 +103,7 @@
 /* ---------- Tablet ---------- */
 @media (max-width: 1000px) {
   .hero {
-    --hero-height: clamp(440px, 70vh, 640px);
+    --hero-height: clamp(380px, 62vw, 640px);
   }
 
   .panel2,
@@ -109,7 +115,7 @@
 /* ---------- Mobile ---------- */
 @media (max-width: 700px) {
   .hero {
-    --hero-height: clamp(520px, 86svh, 700px);
+    --hero-height: clamp(440px, 125vw, 700px);
   }
 
   /* First sketch across the top, the other two share the row below */
@@ -141,7 +147,7 @@
 
   .caption {
     width: 100%;
-    padding-top: 140px;
+    padding-top: 100px;
     background: linear-gradient(
       to top,
       rgba(255, 255, 255, 0.95) 0%,
