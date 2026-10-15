@@ -7,6 +7,7 @@ import Family from '../../Components/Family/Family'
 import Friends from '../../Components/Friends/Friends'
 import Announcements from '../../Components/Announcements/Announcements'
 import SignUrThumpe from '../../Components/SignUrThumpe/SignUrThumpe'
+import Footer from '../../Components/Footer/Footer'
 
 function Home() {
   return (
@@ -19,6 +20,7 @@ function Home() {
      <Friends/>
      <Announcements/>
      <SignUrThumpe/>
+     <Footer/>
     </>
   )
 }
