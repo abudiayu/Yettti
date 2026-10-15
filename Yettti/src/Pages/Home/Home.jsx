@@ -6,6 +6,7 @@ import Partners from '../../Components/Partners/Partners'
 import Family from '../../Components/Family/Family'
 import Friends from '../../Components/Friends/Friends'
 import Announcements from '../../Components/Announcements/Announcements'
+import SignUrThumpe from '../../Components/SignUrThumpe/SignUrThumpe'
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
      <Family/>
      <Friends/>
      <Announcements/>
+     <SignUrThumpe/>
     </>
   )
 }
