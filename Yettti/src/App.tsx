@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Home from './Pages/Home/Home.jsx'
 import NotFound from './Pages/NotFound/NotFound.jsx'
+import Auth from "./Pages/Auth/Auth.jsx"
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Route path="/" element={<Home />} />
       {/* Any unknown URL goes back to Home */}
       <Route path="*" element={<NotFound />} />
+      <Route path="/auth" element={<Auth />} />
     </Routes>
   )
 }

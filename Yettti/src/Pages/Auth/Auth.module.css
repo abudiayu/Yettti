@@ -1,0 +1,362 @@
+.page {
+  --auth-primary: #5b55a8;
+  --auth-primary-dark: #48428f;
+  --auth-text: #1f2430;
+  --auth-muted: #6b7280;
+  --auth-border: #d8dbe6;
+  --auth-bg: #ffffff;
+
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  background: var(--auth-bg);
+  color: var(--auth-text);
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ---------- Left: photo with wavy edge ---------- */
+
+.visual {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #8f8bc4;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+}
+
+/* Purple tint over the photo (delete this block's background to keep original colors) */
+.tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(111, 105, 190, 0.62) 0%,
+    rgba(91, 85, 168, 0.55) 100%
+  );
+}
+
+/* Wavy divider: a white shape on the right edge of the photo */
+.wave {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  height: 100%;
+  width: clamp(80px, 10vw, 150px);
+  display: block;
+  pointer-events: none;
+}
+
+.wavePath {
+  fill: var(--auth-bg);
+}
+
+/* ---------- Right: form ---------- */
+
+.formSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+}
+
+.formWrap {
+  width: 100%;
+  max-width: 420px;
+  animation: rise 0.7s ease both;
+}
+
+.title {
+  margin: 0 0 10px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--auth-text);
+}
+
+.subtitle {
+  margin: 0 0 30px;
+  font-size: 0.92rem;
+  color: var(--auth-muted);
+}
+
+/* ---------- Form ---------- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--auth-text);
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px 0 44px;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--auth-text);
+  background: #ffffff;
+  border: 1px solid var(--auth-border);
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.passwordInput {
+  padding-right: 46px;
+}
+
+.input::placeholder {
+  color: #a3a9b8;
+}
+
+.input:hover {
+  border-color: #bcc1d3;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--auth-primary);
+  box-shadow: 0 0 0 4px rgba(91, 85, 168, 0.14);
+}
+
+.iconLeft {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  color: #7b819a;
+  pointer-events: none;
+}
+
+.iconLeft svg {
+  width: 18px;
+  height: 18px;
+}
+
+.inputWrap:focus-within .iconLeft {
+  color: var(--auth-primary);
+}
+
+.eye {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: #7b819a;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.eye:hover {
+  color: var(--auth-primary);
+}
+
+.eye:focus-visible {
+  outline: 2px solid var(--auth-primary);
+}
+
+.eye svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Remember / forgot ---------- */
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 2px 0 24px;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: var(--auth-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkInput {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--auth-primary);
+  cursor: pointer;
+}
+
+.link {
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--auth-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.link:hover {
+  border-bottom-color: var(--auth-primary);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--auth-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- Submit ---------- */
+
+.submit {
+  width: 100%;
+  height: 48px;
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--auth-primary), var(--auth-primary-dark));
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 12px 24px -12px rgba(72, 66, 143, 0.8);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 28px -12px rgba(72, 66, 143, 0.85);
+}
+
+.submit:active {
+  transform: translateY(0);
+}
+
+.submit:focus-visible {
+  outline: 3px solid rgba(91, 85, 168, 0.4);
+  outline-offset: 3px;
+}
+
+.signup {
+  margin: 20px 0 0;
+  font-size: 0.86rem;
+  text-align: center;
+  color: var(--auth-muted);
+}
+
+.signup .link {
+  font-size: inherit;
+}
+
+.terms {
+  margin: 26px 0 0;
+  font-size: 0.74rem;
+  line-height: 1.6;
+  text-align: center;
+  color: #8b91a3;
+}
+
+.terms .link {
+  font-size: inherit;
+}
+
+/* ---------- Animation ---------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  /* Photo becomes a banner on top with a curved bottom edge */
+  .visual {
+    min-height: 0;
+    height: 220px;
+    border-radius: 0 0 50% 50% / 0 0 36px 36px;
+  }
+
+  .wave {
+    display: none;
+  }
+
+  .formSide {
+    align-items: flex-start;
+    padding: 32px 20px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .visual {
+    height: 180px;
+  }
+
+  .title {
+    font-size: 1.55rem;
+  }
+
+  .row {
+    margin-bottom: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formWrap {
+    animation: none;
+  }
+
+  .submit {
+    transition: none;
+  }
+}
