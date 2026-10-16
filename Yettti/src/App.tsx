@@ -9,8 +9,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       {/* Any unknown URL goes back to Home */}
-      <Route path="*" element={<NotFound />} />
+      
       <Route path="/auth" element={<Auth />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
