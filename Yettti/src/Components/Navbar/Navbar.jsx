@@ -105,6 +105,11 @@ const NAV_ITEMS = [
       cta: { label: "Sign up to get our newsletter", href: "/signup" },
     },
   },
+  {
+    label: "Login",
+    href: "/login",
+    
+  }
 ];
 
 function Navbar() {
