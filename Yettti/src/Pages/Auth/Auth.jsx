@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Style from './Auth.module.css'
-import heroImg from '../../assets/Yetttimg/yettiSkitche2.jpg'
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Style from './Auth.module.css';
+import heroImg from '../../assets/Yetttimg/yettiSkitche2.jpg';
 
 function Auth() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -13,6 +14,7 @@ function Auth() {
     e.preventDefault()
     // TODO: replace with your real sign-in request
     console.log('Sign in:', { email, password, remember })
+    navigate('/admin')
   }
 
   return (
