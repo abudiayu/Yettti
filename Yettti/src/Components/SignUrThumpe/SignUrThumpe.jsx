@@ -5,7 +5,7 @@ import styles from "./SignUrThumpe.module.css";
 import cardImg from "../../assets/Yetttimg/yettifuul.jpg";
 import modalImg from "../../assets/Yetttimg/yetti1.jpg";
 
-const BRAND = "YettiNotes";
+const BRAND = "YettiJourney";
 const AMOUNTS = [5, 10, 25, 50];
 
 function SignUrThumpe() {
@@ -71,7 +71,7 @@ function SignUrThumpe() {
             className={styles.cta}
             onClick={() => setOpen(true)}
           >
-            Sign up to get our newsletter
+            Sign up to Support the Journey
           </button>
         </div>
         <div className={styles.photo}>
@@ -128,7 +128,7 @@ function SignUrThumpe() {
               ) : (
                 <form onSubmit={handleSubmit} noValidate>
                   <h3 className={styles.formTitle} id="signup-title">
-                    Join the Yetti newsletter
+                    Join the Yetti's  Life Journey
                   </h3>
 
                   <label className={styles.label} htmlFor="su-email">
@@ -152,7 +152,7 @@ function SignUrThumpe() {
                   )}
 
                   <label className={styles.label} htmlFor="su-message">
-                    Anything you want to hear about?{" "}
+                    Anything you want to give us feedback about?{" "}
                     <span className={styles.optional}>(optional)</span>
                   </label>
                   <textarea
