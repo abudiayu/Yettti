@@ -9,6 +9,7 @@ import promoImg4 from "../../assets/Yetttimg/demera.jpg"
   Edit this array to change the nav links.
   - A link with only `label` + `href` is a normal link.
   - A link with `menu` opens the big dropdown panel (like "Books" on Gates Notes).
+  - A link with `button: true` is shown as the highlighted button.
 */
 const NAV_ITEMS = [
   {
@@ -27,10 +28,10 @@ const NAV_ITEMS = [
       promo: {
         image: promoImg,
         eyebrow: "Become an insider",
-        title: "Sign up to our newsletter",
+        title: "Support this Journey",
         href: "/signup",
       },
-      cta: { label: "Sign up to get our newsletter", href: "/signup" },
+      cta: { label: "Support this Journey", href: "/signup" },
     },
   },
   {
@@ -49,10 +50,10 @@ const NAV_ITEMS = [
       promo: {
         image: promoImg2,
         eyebrow: "Become an insider",
-        title: "Sign up to our newsletter",
+        title: "Support this Journey",
         href: "/signup",
       },
-      cta: { label: "Sign up to get our newsletter", href: "/signup" },
+      cta: { label: "Support this Journey", href: "/signup" },
     },
   },
   {
@@ -77,10 +78,10 @@ const NAV_ITEMS = [
       promo: {
         image: promoImg3,
         eyebrow: "Become an insider",
-        title: "Sign up to our newsletter",
+        title: "Support this Journey",
         href: "/signup",
       },
-      cta: { label: "Sign up to get our newsletter", href: "/signup" },
+      cta: { label: "Support this Journey", href: "/signup" },
     },
   },
   {
@@ -99,16 +100,16 @@ const NAV_ITEMS = [
       promo: {
         image: promoImg4,
         eyebrow: "Become an insider",
-        title: "Sign up to our newsletter",
+        title: "Support this Journey",
         href: "/signup",
       },
-      cta: { label: "Sign up to get our newsletter", href: "/signup" },
+      cta: { label: "Support this Journey", href: "/signup" },
     },
   },
   {
     label: "Login",
     href: "/auth",
-
+    button: true, // CHANGED: shows this item as the highlighted button
   }
 ];
 
@@ -219,12 +220,13 @@ function Navbar() {
           <ul className={styles.links}>
             {NAV_ITEMS.map((item, index) => {
               const hasMenu = Boolean(item.menu);
+              const isButton = Boolean(item.button); // CHANGED
               const isOpen = openMenu === index;
 
               return (
                 <li
                   key={item.label}
-                  className={styles.item}
+                  className={`${styles.item} ${isButton ? styles.itemLogin : ""}`} // CHANGED
                   onMouseEnter={() => (hasMenu ? handleEnter(index) : null)}
                   onMouseLeave={hasMenu ? handleLeave : undefined}
                 >
@@ -254,6 +256,37 @@ function Navbar() {
                         />
                       </svg>
                     </button>
+                  ) : isButton ? (
+                    /* CHANGED: the new Login button */
+                    <a href={item.href} className={styles.loginBtn} onClick={closeAll}>
+                      <svg
+                        className={styles.loginIcon}
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="8" r="4" fill="currentColor" />
+                        <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7H4z" fill="currentColor" />
+                      </svg>
+                      <span>{item.label}</span>
+                      <svg
+                        className={styles.loginArrow}
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M5 12h14M13 6l6 6-6 6"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </a>
                   ) : (
                     <a href={item.href} className={styles.link} onClick={closeAll}>
                       {item.label}
